@@ -2,20 +2,18 @@
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
 		if( request.name == "COPY_MESSAGE" ) {
+			var contextMenuElement = getElementsByXPath(document, contextMenuElementXPath)[0];
 			switch( request.type ){
 				case 1:
-					contextMenuElementXPath.innerText;
+					console.log(contextMenuElement.innerText);
 					break;
 				case 2:
-					contextMenuElementXPath.innerHTML;
+					console.log(contextMenuElement.innerHTML);
 					break;
 				case 3:
-					document.location;
+					console.log(document.location);
 					break;
 			}
-			//var contextMenuElement = getElementsByXPath(document, contextMenuElementXPath)[0];
-			
-			
 		}
 	}
 );
@@ -24,7 +22,7 @@ var contextMenuElementXPath = null;
 
 var onContextMenu = function(event)
 {
-    contextMenuElementXPath = event.target;//getElementXPath(event.target);
+    contextMenuElementXPath = getElementXPath(event.target);//event.target;//
 };
 
 var loadListeners = function()
