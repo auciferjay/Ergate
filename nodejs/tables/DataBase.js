@@ -9,7 +9,7 @@ var config = {
                     port: 3306,
                     //socketPath:,
                     user: 'root',
-                    password: 'amanda0817',
+                    password: '******',
                     database: 'test',
                     insecureAuth: true,
                     supportBigNumbers: false,
