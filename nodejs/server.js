@@ -6,13 +6,13 @@ var sessionFactory  = require('./session');
 
 function onStart(route, handler) {
 	http.createServer(function(req, res) {
-		sessionFactory.startSession(req, res, handler);
+		sessionFactory.startSession(req, res, sessionHandler);
 		
-		console.log("Request for " + pathname + " received.");
 		var pathname = url.parse(req.url).pathname;
 		var query = url.parse(req.url).query;
 		
-		if( query === null ){
+                console.log("Request for " + pathname + " received.");
+                if( query === null ){
                         query = "";
 		}else{
                         query += "&";
@@ -29,10 +29,9 @@ function onStart(route, handler) {
 	console.log("Server has started.");
 }
 
-var handler = function(req, res) {
+var sessionHandler = function(req, res) {
 	var session = this;
-	session.set('banana', '你个巴啦~');
-	res.end(session.get('banana'));
+	console.log(res.getHeader("Set-Cookie"));
 };
 
 exports.start = onStart;

@@ -83,6 +83,5 @@ exports.startSession = function(request, response, process) {
 		_sessions[sID] = createSession(sID);
 	}
 	response.setHeader('Set-Cookie', ['SID=' + sID]);
-        console.log(process);
-	//process.call(new context(_sessions, sID), request, response);
+	process.call(new context(_sessions, sID), request, response);
 };

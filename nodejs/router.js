@@ -9,8 +9,8 @@ function onRoute(handler, pathname, data, res) {
 		console.log("No request handler found for " + pathname);
 		res.writeHead(200, {"Content-Type": "text/html"});
                 fs.readFile('index.html', function(err, data) {
-                        console.log(err);
-                        res.end(data);
+                        res.write(data);
+                        res.end();
                 });
 	}
 }
