@@ -11,10 +11,10 @@ var EXPIRE_TIME = 3 * 60 * 1000;
 var _sessions = {};
  
 function genSID(pre) {
-	pre = (pre)?pre : 'SESSION';
+	pre = (pre)?pre:'SESSION';
 	var time = new Date().getTime() + '';
-    var id = pre + '_' + (time).substring(time.length - 6) + '_' + (Math.round(Math.random() * 1000));
-    return id;
+        var id = pre + '_' + (time).substring(time.length - 6) + '_' + (Math.round(Math.random() * 1000));
+        return id;
 }
  
 /**
@@ -33,9 +33,9 @@ var createSession = function(sID) {
 	var session = {
 		SID: sID,
 		timestamp: new Date()
-	}
+	};
 	return session;
-}
+};
  
 /**
  * @description 维护了对session的引用，可进行增删查改操作
@@ -52,7 +52,7 @@ var context = function(_sessions, sID) {
 	this.del = function(key) {
 		this.poke();
 		delete _sessions[sID][key];
-	}
+	};
 	this.set = function(key, value) {
 		this.poke();
 		_sessions[sID][key] = value;
@@ -61,7 +61,7 @@ var context = function(_sessions, sID) {
 		this.poke();
 		return _sessions[sID][key];
 	};
-}
+};
  
 /**
  * @description 开始session
@@ -73,15 +73,16 @@ exports.startSession = function(request, response, process) {
 	var cookies = parse(request.headers.cookie, '; ');
 	var sID;
 	for (var i in cookies) {
-		if (i == 'SID') {
+		if (i === 'SID') {
 			sID = cookies[i];
 			break;
 		}
 	}
-	if (!sID || typeof _sessions[sID] == 'undefined') {
+	if (!sID || typeof _sessions[sID] === 'undefined') {
 		var sID = genSID();
 		_sessions[sID] = createSession(sID);
 	}
 	response.setHeader('Set-Cookie', ['SID=' + sID]);
-	process.call(new context(_sessions, sID), request, response);
-}
+        console.log(process);
+	//process.call(new context(_sessions, sID), request, response);
+};

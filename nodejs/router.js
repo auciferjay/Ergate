@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 function onRoute(handler, pathname, data, res) {
 	console.log("About to route a request for " + pathname + " DATA: " + data);
 	
@@ -5,9 +7,11 @@ function onRoute(handler, pathname, data, res) {
 		handler[pathname](data, res);
 	} else {
 		console.log("No request handler found for " + pathname);
-		res.writeHead(404, {'Content-Type': 'text/plain'});
-		res.write("404 Not found");
-		res.end();
+		res.writeHead(200, {"Content-Type": "text/html"});
+                fs.readFile('index.html', function(err, data) {
+                        console.log(err);
+                        res.end(data);
+                });
 	}
 }
 

@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			$('Submit').onclick = function() {
 				Viewer.login();
-			}
+			};
 		},
 		login : function() {
 			var xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function() {
-					if ( xmlhttp.readyState == 4 ) {// 4 = "loaded"
-						if ( xmlhttp.status == 200 ) {// 200 = OK
+					if ( xmlhttp.readyState === 4 ) {// 4 = "loaded"
+						if ( xmlhttp.status === 200 ) {// 200 = OK
 							// ...our code here...
 						} else {
 							//alert("Problem retrieving XML data");
@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		logout : function() {
 			var xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function() {
-					if ( xmlhttp.readyState == 4 ) {// 4 = "loaded"
-						if ( xmlhttp.status == 200 ) {// 200 = OK
+					if ( xmlhttp.readyState === 4 ) {// 4 = "loaded"
+						if ( xmlhttp.status === 200 ) {// 200 = OK
 							// ...our code here...
 						} else {
 							//alert("Problem retrieving XML data");
@@ -44,6 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				xmlhttp.open("GET", "http://localhost/logout", true);
 				xmlhttp.send(null);
 		}
-	}
+	};
 	Viewer.init();
 });

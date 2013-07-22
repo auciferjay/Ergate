@@ -1,9 +1,10 @@
-var server = require("./server");
-var router = require("./router");
-var requestHandlers = require("./requestHandlers");
+var server          = require("./server");
+var router          = require("./router");
+var userHandlers    = require("./handlers/userHandlers");
 
-var handle = {}
-handle["/login"] = requestHandlers.login;
-handle["/logout"] = requestHandlers.logout;
+var handle = {};
+handle["/regist"]   = userHandlers.regist;
+handle["/login"]    = userHandlers.login;
+handle["/logout"]   = userHandlers.logout;
 
 server.start(router.route, handle);
